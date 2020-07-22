@@ -25,9 +25,13 @@ namespace DuelingGame
 
         public int playerSpeed = 2;
 
+        bool alreadyLeft;
+
         private int animationPhase = 0;
         private int animationDelay = 7;
         private int animationCurrentDelay = 0;
+
+        public bool Blocking, Attacking;
 
         public Player(int position_x, int position_y)
         {
@@ -71,16 +75,22 @@ namespace DuelingGame
                 if (Action == "Attacking")
                 {
                     playerImage = attackingLeftAnimations[animationPhase];
+                    Attacking = true;
+                    Blocking = false;
                 }
                 else if (Action == "Blocking")
                 {
                     playerImage = Properties.Resources.stick_man_guarding_stance;
+                    Attacking = false;
+                    Blocking = true;
                 }
                 else if (Action == "Standing")
                 {
                     playerImage = StandingImage;
+                    Attacking = false;
+                    Blocking = false;
                 }
-                playerRec.Width = 0 - width;
+                faceLeft();
             } 
             else
             {
@@ -91,16 +101,22 @@ namespace DuelingGame
                 if (Action == "Attacking")
                 {
                     playerImage = attackingLeftAnimations[animationPhase];
+                    Attacking = true;
+                    Blocking = false;
                 }
                 else if (Action == "Blocking")
                 {
                     playerImage = playerBlockingImage;
+                    Attacking = false;
+                    Blocking = true;
                 }
                 else if (Action == "Standing")
                 {
                     playerImage = StandingImage;
+                    Attacking = false;
+                    Blocking = false;
                 }
-                playerRec.Width = width;
+                faceRight();
             }
 
             if (animationCurrentDelay == animationDelay)
@@ -114,5 +130,26 @@ namespace DuelingGame
             }
         }
 
+        private void faceLeft()
+        {
+            if (!alreadyLeft)
+            {
+                playerRec.Width = 0 - width;
+                x = x + (width / 2);
+                playerRec.Location = new Point(x, y);
+                alreadyLeft = true;
+            }
+        }
+
+        private void faceRight()
+        {
+            if (alreadyLeft)
+            {
+                playerRec.Width = width;
+                x = x - (width / 2);
+                playerRec.Location = new Point(x, y);
+            }
+            alreadyLeft = false;
+        }
     }
 }
