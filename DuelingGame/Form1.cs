@@ -18,7 +18,9 @@ namespace DuelingGame
 
         Player player = new Player(10, 352);
 
-        bool playerLeft, playerRight;
+        bool playerLeft, playerRight, playerFacingLeft;
+
+        string playerAction;
 
         public Form1()
         {
@@ -30,7 +32,7 @@ namespace DuelingGame
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
             g = e.Graphics;
-            player.DrawPlayer(g);
+            player.DrawPlayer(g, playerFacingLeft, playerAction);
         }
 
         // Keyboard Hooks
@@ -47,9 +49,15 @@ namespace DuelingGame
                 case Keys.Right:
                     playerRight = true;
                     break;
+
+                case Keys.Space:
+                    playerAction = "Attacking";
+                    break;
+
+                case Keys.B:
+                    playerAction = "Blocking";
+                    break;
             }
-            Console.WriteLine(playerLeft);
-            Console.WriteLine(playerRight);
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -65,19 +73,29 @@ namespace DuelingGame
                 case Keys.Right:
                     playerRight = false;
                     break;
+
+                case Keys.Space:
+                    playerAction = "Standing";
+                    break;
+
+                case Keys.B:
+                    playerAction = "Standing";
+                    break;
             }
         }
 
         private void tmrPlayer_Tick(object sender, EventArgs e)
         {
-            if(playerLeft)
+            if (playerLeft)
             {
                 player.MovePlayer(true);
+                playerFacingLeft = true;
             }
 
             if (playerRight)
             {
                 player.MovePlayer(false);
+                playerFacingLeft = false;
             }
 
             Canvas.Invalidate();
