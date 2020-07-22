@@ -28,33 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.Canvas = new System.Windows.Forms.Panel();
+            this.tmrPlayer = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // panel1
+            // Canvas
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightGray;
-            this.panel1.Location = new System.Drawing.Point(12, 12);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 426);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.Canvas.BackColor = System.Drawing.Color.LightGray;
+            this.Canvas.Location = new System.Drawing.Point(12, 12);
+            this.Canvas.Name = "Canvas";
+            this.Canvas.Size = new System.Drawing.Size(750, 400);
+            this.Canvas.TabIndex = 0;
+            this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
+            // 
+            // tmrPlayer
+            // 
+            this.tmrPlayer.Enabled = true;
+            this.tmrPlayer.Interval = 10;
+            this.tmrPlayer.Tick += new System.EventHandler(this.tmrPlayer_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(778, 428);
+            this.Controls.Add(this.Canvas);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Canvas";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel Canvas;
+        private System.Windows.Forms.Timer tmrPlayer;
     }
 }
 
