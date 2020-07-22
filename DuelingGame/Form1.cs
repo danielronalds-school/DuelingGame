@@ -24,6 +24,7 @@ namespace DuelingGame
         bool player2Left, player2Right, player2FacingLeft;
 
         string playerAction;
+        string player2Action;
 
         public Form1()
         {
@@ -36,7 +37,7 @@ namespace DuelingGame
         {
             g = e.Graphics;
             player.DrawPlayer(g, playerFacingLeft, playerAction);
-            player2.DrawPlayer(g, playerFacingLeft, playerAction);
+            player2.DrawPlayer(g, player2FacingLeft, player2Action);
         }
 
         // Keyboard Hooks
@@ -59,6 +60,23 @@ namespace DuelingGame
 
                 case Keys.Q:
                     playerAction = "Blocking";
+                    break;
+
+                // Player 2
+                case Keys.Left:
+                    player2Left = true;
+                    break;
+
+                case Keys.Right:
+                    player2Right = true;
+                    break;
+
+                case Keys.M:
+                    player2Action = "Attacking";
+                    break;
+
+                case Keys.N:
+                    player2Action = "Blocking";
                     break;
             }
         }
@@ -83,11 +101,29 @@ namespace DuelingGame
                 case Keys.Q:
                     playerAction = "Standing";
                     break;
+
+                // Player 2
+                case Keys.Left:
+                    player2Left = false;
+                    break;
+
+                case Keys.Right:
+                    player2Right = false;
+                    break;
+
+                case Keys.M:
+                    player2Action = "Standing";
+                    break;
+
+                case Keys.N:
+                    player2Action = "Standing";
+                    break;
             }
         }
 
         private void tmrPlayer_Tick(object sender, EventArgs e)
         {
+            // Player 1
             if (playerLeft)
             {
                 player.MovePlayer(true);
@@ -98,6 +134,19 @@ namespace DuelingGame
             {
                 player.MovePlayer(false);
                 playerFacingLeft = false;
+            }
+
+            // Player 2
+            if (player2Left)
+            {
+                player2.MovePlayer(true);
+                player2FacingLeft = true;
+            }
+
+            if (player2Right)
+            {
+                player2.MovePlayer(false);
+                player2FacingLeft = false;
             }
 
             Canvas.Invalidate();

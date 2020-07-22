@@ -90,7 +90,7 @@ namespace DuelingGame
                 }
                 else if (Action == "Blocking")
                 {
-                    playerImage = Properties.Resources.stick_man_guarding_stance;
+                    playerImage = playerBlockingImage;
                     Attacking = false;
                     Blocking = true;
                 }
