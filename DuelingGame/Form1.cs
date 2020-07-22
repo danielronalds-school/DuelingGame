@@ -21,7 +21,7 @@ namespace DuelingGame
 
         bool playerLeft, playerRight, playerFacingLeft;
 
-        bool player2Left, player2Right, player2FacingLeft;
+        bool player2Left, player2Right, player2FacingLeft = true;
 
         string playerAction;
         string player2Action;
