@@ -16,9 +16,12 @@ namespace DuelingGame
     {
         Graphics g;
 
-        Player player = new Player(10, 352);
+        Player player = new Player(10, 355, "blue");
+        Player player2 = new Player(600, 355, "red");
 
         bool playerLeft, playerRight, playerFacingLeft;
+
+        bool player2Left, player2Right, player2FacingLeft;
 
         string playerAction;
 
@@ -33,6 +36,7 @@ namespace DuelingGame
         {
             g = e.Graphics;
             player.DrawPlayer(g, playerFacingLeft, playerAction);
+            player2.DrawPlayer(g, playerFacingLeft, playerAction);
         }
 
         // Keyboard Hooks
@@ -40,21 +44,20 @@ namespace DuelingGame
         {
             switch(e.KeyCode)
             {
+                // Player 1
                 case Keys.A:
-                case Keys.Left:
                     playerLeft = true;
                     break;
 
                 case Keys.D:
-                case Keys.Right:
                     playerRight = true;
                     break;
 
-                case Keys.Space:
+                case Keys.E:
                     playerAction = "Attacking";
                     break;
 
-                case Keys.B:
+                case Keys.Q:
                     playerAction = "Blocking";
                     break;
             }
@@ -64,21 +67,20 @@ namespace DuelingGame
         {
             switch (e.KeyCode)
             {
+                // Player 1
                 case Keys.A:
-                case Keys.Left:
                     playerLeft = false;
                     break;
 
                 case Keys.D:
-                case Keys.Right:
                     playerRight = false;
                     break;
 
-                case Keys.Space:
+                case Keys.E:
                     playerAction = "Standing";
                     break;
 
-                case Keys.B:
+                case Keys.Q:
                     playerAction = "Standing";
                     break;
             }

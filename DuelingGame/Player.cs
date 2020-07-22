@@ -33,13 +33,23 @@ namespace DuelingGame
 
         public bool Blocking, Attacking;
 
-        public Player(int position_x, int position_y)
+        public Player(int position_x, int position_y, string bladeColour)
         {
+            if (bladeColour == "red")
+            {
+
+                attackingLeftAnimations[0] = Properties.Resources.stick_man_red_attack_stance_1;
+                attackingLeftAnimations[1] = Properties.Resources.stick_man_red_attack_stance_2;
+                attackingLeftAnimations[2] = Properties.Resources.stick_man_red_attack_stance_3;
+                StandingImage = Properties.Resources.stick_man_red_action_stance;
+                playerBlockingImage = Properties.Resources.stick_man_red_guarding_stance;
+            }
+
+            playerImage = StandingImage;
             x = position_x;// 10;
             y = position_y;// 380;
             width = 48;
             height = 48;
-            playerImage = Properties.Resources.stick_man_action_stance;
             playerRec = new Rectangle(x, y, width, height);
         }
 

@@ -96,5 +96,20 @@
   <ItemGroup>
     <None Include="Resources\stick_man_guarding_stance.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stick_man_red_action_stance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stick_man_red_attack_stance_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stick_man_red_attack_stance_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stick_man_red_attack_stance_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stick_man_red_guarding_stance.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

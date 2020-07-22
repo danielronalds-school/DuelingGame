@@ -109,5 +109,55 @@ namespace DuelingGame.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stick_man_red_action_stance {
+            get {
+                object obj = ResourceManager.GetObject("stick_man_red_action_stance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stick_man_red_attack_stance_1 {
+            get {
+                object obj = ResourceManager.GetObject("stick_man_red_attack_stance_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stick_man_red_attack_stance_2 {
+            get {
+                object obj = ResourceManager.GetObject("stick_man_red_attack_stance_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stick_man_red_attack_stance_3 {
+            get {
+                object obj = ResourceManager.GetObject("stick_man_red_attack_stance_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stick_man_red_guarding_stance {
+            get {
+                object obj = ResourceManager.GetObject("stick_man_red_guarding_stance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
