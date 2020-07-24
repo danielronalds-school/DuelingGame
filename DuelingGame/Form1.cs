@@ -16,12 +16,17 @@ namespace DuelingGame
     {
         Graphics g;
 
-        Player player = new Player(10, 355, "blue");
-        Player player2 = new Player(600, 355, "red");
+        Player player = new Player(10, 100, "blue");
+        Player player2 = new Player(600, 100, "red");
 
         bool playerLeft, playerRight, playerFacingLeft;
 
         bool player2Left, player2Right, player2FacingLeft = true;
+
+
+        PictureBox[] solidObjects = new PictureBox[2];
+
+        Player[] playersArray = new Player[2];
 
         string playerAction;
         string player2Action;
@@ -30,14 +35,28 @@ namespace DuelingGame
         {
             InitializeComponent();
             typeof(Panel).InvokeMember("DoubleBuffered", BindingFlags.SetProperty | BindingFlags.Instance | BindingFlags.NonPublic, null, Canvas, new object[] { true });
-
+            configureSolidObjectsArray();
+            configurePlayersArray();
         }
 
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
+            runGravity();
             g = e.Graphics;
             player.DrawPlayer(g, playerFacingLeft, playerAction);
             player2.DrawPlayer(g, player2FacingLeft, player2Action);
+        }
+
+        private void configureSolidObjectsArray()
+        {
+            solidObjects[0] = Floor;
+            solidObjects[1] = platform1;
+        }
+
+        private void configurePlayersArray()
+        {
+            playersArray[0] = player;
+            playersArray[1] = player2;
         }
 
         // Keyboard Hooks
@@ -120,7 +139,8 @@ namespace DuelingGame
                     break;
             }
         }
-
+        
+        // Timers
         private void tmrPlayer_Tick(object sender, EventArgs e)
         {
             // Player 1
@@ -150,6 +170,36 @@ namespace DuelingGame
             }
 
             Canvas.Invalidate();
+        }
+
+        // Gravity
+        public bool objectTouchingSolidObject(Rectangle Object)
+        {
+            foreach(PictureBox box in solidObjects)
+            {
+                if (Object.IntersectsWith(box.Bounds))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void runGravity()
+        {
+            foreach(Player player in playersArray)
+            {
+                if(!objectTouchingSolidObject(player.playerRec))
+                {
+                    for (int i = 0; i < player.fallSpeed; i++)
+                    {
+                        if (!objectTouchingSolidObject(player.playerRec))
+                        {
+                            player.y++;
+                        }
+                    }
+                }
+            }
         }
     }
 }

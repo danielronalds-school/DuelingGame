@@ -33,6 +33,8 @@ namespace DuelingGame
 
         public bool Blocking, Attacking;
 
+        public int fallSpeed = 5;
+
         public Player(int position_x, int position_y, string bladeColour)
         {
             if (bladeColour == "red")
@@ -57,6 +59,7 @@ namespace DuelingGame
         public void DrawPlayer(Graphics g, bool Left, string Action)
         {
             updateAnimation(Left, Action);
+            playerRec.Location = new Point(x, y);
             g.DrawImage(playerImage, playerRec);
 
         }
@@ -71,7 +74,7 @@ namespace DuelingGame
             {
                 x += playerSpeed;
             }
-            playerRec.Location = new Point(x, y);
+            //playerRec.Location = new Point(x, y);
         }
 
         public void updateAnimation(bool Left, string Action)
@@ -146,7 +149,7 @@ namespace DuelingGame
             {
                 playerRec.Width = 0 - width;
                 x = x + (width / 2);
-                playerRec.Location = new Point(x, y);
+                //playerRec.Location = new Point(x, y);
                 alreadyLeft = true;
             }
         }
@@ -157,7 +160,7 @@ namespace DuelingGame
             {
                 playerRec.Width = width;
                 x = x - (width / 2);
-                playerRec.Location = new Point(x, y);
+                //playerRec.Location = new Point(x, y);
             }
             alreadyLeft = false;
         }
