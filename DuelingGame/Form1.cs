@@ -19,9 +19,9 @@ namespace DuelingGame
         Player player = new Player(10, 100, "blue");
         Player player2 = new Player(600, 100, "red");
 
-        bool playerLeft, playerRight, playerFacingLeft;
+        bool playerLeft, playerRight, playerFacingLeft, playerJumping;
 
-        bool player2Left, player2Right, player2FacingLeft = true;
+        bool player2Left, player2Right, player2FacingLeft = true, player2Jumping;
 
 
         PictureBox[] solidObjects = new PictureBox[2];
@@ -43,8 +43,8 @@ namespace DuelingGame
         {
             runGravity();
             g = e.Graphics;
-            player.DrawPlayer(g, playerFacingLeft, playerAction);
-            player2.DrawPlayer(g, player2FacingLeft, player2Action);
+            player.DrawPlayer(g, playerFacingLeft, playerAction, playerJumping, objectTouchingSolidObject(player.playerRec));
+            player2.DrawPlayer(g, player2FacingLeft, player2Action, player2Jumping, objectTouchingSolidObject(player2.playerRec));
         }
 
         private void configureSolidObjectsArray()
@@ -73,6 +73,10 @@ namespace DuelingGame
                     playerRight = true;
                     break;
 
+                case Keys.W:
+                    playerJumping = true;
+                    break;
+
                 case Keys.E:
                     playerAction = "Attacking";
                     break;
@@ -88,6 +92,10 @@ namespace DuelingGame
 
                 case Keys.Right:
                     player2Right = true;
+                    break;
+
+                case Keys.Up:
+                    player2Jumping = true;
                     break;
 
                 case Keys.M:
@@ -113,6 +121,10 @@ namespace DuelingGame
                     playerRight = false;
                     break;
 
+                case Keys.W:
+                    playerJumping = false;
+                    break;
+
                 case Keys.E:
                     playerAction = "Standing";
                     break;
@@ -128,6 +140,10 @@ namespace DuelingGame
 
                 case Keys.Right:
                     player2Right = false;
+                    break;
+
+                case Keys.Up:
+                    player2Jumping = false;
                     break;
 
                 case Keys.M:
@@ -189,7 +205,7 @@ namespace DuelingGame
         {
             foreach(Player player in playersArray)
             {
-                if(!objectTouchingSolidObject(player.playerRec))
+                if(!objectTouchingSolidObject(player.playerRec) && player.affectedByGravity)
                 {
                     for (int i = 0; i < player.fallSpeed; i++)
                     {

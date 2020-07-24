@@ -34,6 +34,13 @@ namespace DuelingGame
         public bool Blocking, Attacking;
 
         public int fallSpeed = 5;
+        public bool affectedByGravity = true;
+
+        public int currentJumpCycle = 0;
+        public int maxJumpCycle = 15;
+
+        public int currentJumpSpeed = 0;
+        public int maxJumpSpeed = 10;
 
         public Player(int position_x, int position_y, string bladeColour)
         {
@@ -48,16 +55,17 @@ namespace DuelingGame
             }
 
             playerImage = StandingImage;
-            x = position_x;// 10;
-            y = position_y;// 380;
+            x = position_x;
+            y = position_y;
             width = 48;
             height = 48;
             playerRec = new Rectangle(x, y, width, height);
         }
 
 
-        public void DrawPlayer(Graphics g, bool Left, string Action)
+        public void DrawPlayer(Graphics g, bool Left, string Action, bool canJump, bool touchingSolidObject)
         {
+            PlayerJump(canJump, touchingSolidObject);
             updateAnimation(Left, Action);
             playerRec.Location = new Point(x, y);
             g.DrawImage(playerImage, playerRec);
@@ -75,6 +83,31 @@ namespace DuelingGame
                 x += playerSpeed;
             }
             //playerRec.Location = new Point(x, y);
+        }
+
+        public void PlayerJump(bool canJump, bool touchingSolidObject)
+        {
+            if(canJump && currentJumpCycle < maxJumpCycle)
+            { 
+                affectedByGravity = false;
+
+                if (currentJumpSpeed < maxJumpSpeed)
+                {
+                    currentJumpSpeed += 3;
+                }
+                y -= currentJumpSpeed;
+
+                currentJumpCycle++;
+            }
+            else
+            {
+                if(touchingSolidObject)
+                {
+                    currentJumpCycle = 0;
+                }
+                currentJumpSpeed = 0;
+                affectedByGravity = true;
+            }
         }
 
         public void updateAnimation(bool Left, string Action)

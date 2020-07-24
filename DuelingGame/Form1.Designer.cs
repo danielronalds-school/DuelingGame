@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Canvas = new System.Windows.Forms.Panel();
+            this.platform1 = new System.Windows.Forms.PictureBox();
             this.Floor = new System.Windows.Forms.PictureBox();
             this.tmrPlayer = new System.Windows.Forms.Timer(this.components);
-            this.platform1 = new System.Windows.Forms.PictureBox();
             this.Canvas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Floor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.platform1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Floor)).BeginInit();
             this.SuspendLayout();
             // 
             // Canvas
@@ -48,6 +48,15 @@
             this.Canvas.Size = new System.Drawing.Size(750, 400);
             this.Canvas.TabIndex = 0;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
+            // 
+            // platform1
+            // 
+            this.platform1.BackColor = System.Drawing.Color.Gray;
+            this.platform1.Location = new System.Drawing.Point(0, 254);
+            this.platform1.Name = "platform1";
+            this.platform1.Size = new System.Drawing.Size(223, 10);
+            this.platform1.TabIndex = 1;
+            this.platform1.TabStop = false;
             // 
             // Floor
             // 
@@ -64,15 +73,6 @@
             this.tmrPlayer.Interval = 10;
             this.tmrPlayer.Tick += new System.EventHandler(this.tmrPlayer_Tick);
             // 
-            // platform1
-            // 
-            this.platform1.BackColor = System.Drawing.Color.Gray;
-            this.platform1.Location = new System.Drawing.Point(0, 164);
-            this.platform1.Name = "platform1";
-            this.platform1.Size = new System.Drawing.Size(223, 10);
-            this.platform1.TabIndex = 1;
-            this.platform1.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -85,8 +85,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             this.Canvas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Floor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.platform1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Floor)).EndInit();
             this.ResumeLayout(false);
 
         }
