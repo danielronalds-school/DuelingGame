@@ -42,6 +42,9 @@ namespace DuelingGame
         public int currentJumpSpeed = 0;
         public int maxJumpSpeed = 10;
 
+        public int currentGravitySpeed = 1;
+        public int maxGravitySpeed = 10;
+
         public Player(int position_x, int position_y, string bladeColour)
         {
             if (bladeColour == "red")

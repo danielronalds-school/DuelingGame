@@ -16,8 +16,8 @@ namespace DuelingGame
     {
         Graphics g;
 
-        Player player = new Player(10, 100, "blue");
-        Player player2 = new Player(600, 100, "red");
+        Player player = new Player(10, 0, "blue");
+        Player player2 = new Player(600, 0, "red");
 
         bool playerLeft, playerRight, playerFacingLeft, playerJumping;
 
@@ -207,13 +207,21 @@ namespace DuelingGame
             {
                 if(!objectTouchingSolidObject(player.playerRec) && player.affectedByGravity)
                 {
-                    for (int i = 0; i < player.fallSpeed; i++)
+                    for (int i = 0; i < player.currentGravitySpeed; i++)
                     {
+                        if(player.currentGravitySpeed < player.maxGravitySpeed)
+                        {
+                            player.currentGravitySpeed++;
+                        }
                         if (!objectTouchingSolidObject(player.playerRec))
                         {
                             player.y++;
                         }
                     }
+                }
+                else
+                {
+                    player.currentGravitySpeed = 1;
                 }
             }
         }
